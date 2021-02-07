@@ -36,7 +36,7 @@ class API {
 
   async getUser(id: UserId) {
     const resource = new RateLimitedResource(
-      "API-calls-user-1313",
+      `API-calls-user-${id}`,
       100,
       Duration.fromObject({ minute: 1 })
     );
