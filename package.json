@@ -1,16 +1,16 @@
 {
-  "name": "@journyio/:package",
-  "homepage": "https://github.com/journy-io/:package",
-  "repository": "github:journy-io/:package",
+  "name": "@journyio/ratelimiter",
+  "homepage": "https://github.com/journy-io/ratelimiter",
+  "repository": "github:journy-io/ratelimiter",
   "version": "0.0.0",
-  "description": ":description",
+  "description": "Sliding rate limiter using Redis",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "build-watch": "tsc --watch",
-    "test": "jest ${1}",
-    "test-watch": "jest ${1} --watch",
+    "test": "REDIS_URL=redis://localhost jest ${1}",
+    "test-watch": "REDIS_URL=redis://localhost jest ${1} --watch",
     "lint": "eslint lib/**/*.ts"
   },
   "directories": {
@@ -24,10 +24,18 @@
     "collectCoverage": true,
     "testEnvironment": "node"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@journyio/clock": "^1.0.1",
+    "ioredis": "^4.22.0",
+    "luxon": "^1.25.0"
+  },
   "sideEffects": false,
   "keywords": [
-    "TODO"
+    "redis",
+    "ratelimiter",
+    "sliding",
+    "resource",
+    "api"
   ],
   "author": "journy.io",
   "license": "MIT",
@@ -36,6 +44,7 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
     "@types/jest": "^26.0.14",
+    "@types/luxon": "^1.25.1",
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
     "eslint": "^7.10.0",
