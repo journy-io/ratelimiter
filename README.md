@@ -27,16 +27,45 @@ yarn add @journyio/ratelimiter
 ## 🔌 Getting started
 
 ```ts
+import Client from "ioredis";
 import { Duration } from "luxon";
-import { RateLimitedResource } from "./RateLimitedResource";
-import { RateLimiterRedis } from "./RateLimiterRedis";
+import { RateLimiter, RateLimiterRedis, RateLimitedResource } from "@journyio/ratelimiter";
+
+class API {
+  constructor(private readonly rateLimiter: RateLimiter) {}
+
+  async getUser(id: UserId) {
+    const resource = new RateLimitedResource(
+      "API-calls-user-1313",
+      100,
+      Duration.fromObject({ minute: 1 })
+    );
+
+    const allowed = await this.rateLimiter.consume(resource);
+
+    if (!allowed) {
+      throw new Error("Rate limited!");
+    }
+
+    /* ... */
+  }
+}
 
 const redis = new Client(process.env.REDIS_URL)
 const rateLimiter = new RateLimiterRedis(redis);
-const resource = new RateLimitedResource("API-calls-user-1313", 100, Duration.fromObject({ minute: 1 }));
+const api = new API(rateLimiter);
+const user = await api.getUser(/* ... */);
+```
 
+```ts
+const resource = new RateLimitedResource(
+  "API-calls-user-1313",
+  100,
+  Duration.fromObject({ minute: 1 })
+);
+
+const allowed = await this.rateLimiter.consume(resource);
 const remainingCalls = await rateLimiter.remaining(resource);
-const allowed = await rateLimiter.consume(resource);
 await rateLimiter.reset(resource);
 ```
 
