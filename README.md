@@ -3,6 +3,7 @@
 # Rate limiter
 
 ![npm](https://img.shields.io/npm/v/@journyio/ratelimiter?color=%234d84f5&style=flat-square)
+[![npm downloads](https://img.shields.io/npm/dm/@journyio/ratelimiter?style=flat-square)](https://www.npmjs.com/package/@journyio/ratelimiter)
 
 A sliding rate limiter using Redis. This package depends on [moment/luxon](https://github.com/moment/luxon) and [luin/ioredis](https://github.com/luin/ioredis).
 
