@@ -27,7 +27,7 @@
   "dependencies": {
     "@journyio/clock": "^1.0.1",
     "ioredis": "^4.22.0",
-    "luxon": "^1.25.0"
+    "luxon": "^2.0.0"
   },
   "sideEffects": false,
   "keywords": [
