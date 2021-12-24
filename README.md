@@ -83,4 +83,4 @@ npm run test
 
 ## 🔒 Security
 
-If you discover any security related issues, please email hans at journy io instead of using the issue tracker.
+If you discover any security related issues, please email security at journy io instead of using the issue tracker.
