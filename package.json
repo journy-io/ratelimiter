@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "@journyio/clock": "^1.0.1",
-    "ioredis": "5.3.1",
-    "luxon": "3.2.1"
+    "ioredis": "^5.3.1",
+    "luxon": "^3.2.1"
   },
   "sideEffects": false,
   "keywords": [
