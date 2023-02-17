@@ -31,6 +31,7 @@ yarn add @journyio/ratelimiter
 import Client from "ioredis";
 import { Duration } from "luxon";
 import { RateLimiter, RateLimiterRedis, RateLimitedResource } from "@journyio/ratelimiter";
+import { ClockSystem } from "@journyio/clock";
 
 class API {
   constructor(private readonly rateLimiter: RateLimiter) {}
@@ -53,7 +54,7 @@ class API {
 }
 
 const redis = new Client(process.env.REDIS_URL)
-const rateLimiter = new RateLimiterRedis(redis);
+const rateLimiter = new RateLimiterRedis(redis, new ClockSystem());
 const api = new API(rateLimiter);
 const user = await api.getUser(/* ... */);
 ```
@@ -82,4 +83,4 @@ npm run test
 
 ## 🔒 Security
 
-If you discover any security related issues, please email hans at journy io instead of using the issue tracker.
+If you discover any security related issues, please email security at journy io instead of using the issue tracker.
